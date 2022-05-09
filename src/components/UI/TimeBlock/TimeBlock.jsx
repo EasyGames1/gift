@@ -1,21 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 import Formatting from '../../../API/Formatting';
 import Time from '../../../API/Time';
 import classes from './TimeBlock.module.scss';
 
-const TimeBlock = (props) => {
+const TimeBlock = forwardRef((props, ref) => {
     const [width, setWidth] = useState(window.innerWidth);
-    const timeblock = useRef(null);
 
     const resizeFunc = () => {
         setWidth(window.innerWidth);
     };
-
-    useEffect(() => {
-        if (props.fullscreen) {
-            timeblock.current.requestFullscreen();
-        };
-    }, [props.fullscreen]);
 
     useEffect(() => {
         window.addEventListener("resize", resizeFunc);
@@ -25,7 +18,7 @@ const TimeBlock = (props) => {
     }, []);
 
     return (
-        <div className={`${classes.clock} ${classes[props.theme]} row`} ref={timeblock}>
+        <div className={`${classes.clock} ${classes[props.theme]} row`} ref={ref || null}>
             <div className={`${classes.item} col-4`}>
                 <p className={classes.timer}>
                     {
@@ -79,6 +72,6 @@ const TimeBlock = (props) => {
             </div>
         </div>
     );
-};
+});
 
 export default TimeBlock;

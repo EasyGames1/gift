@@ -13,17 +13,19 @@ const Countdown = (props) => {
     const [now, setNow] = useState();
     const [running, setRunning] = useState(false);
     const [played, setPlayed] = useState(false);
-    const [fullscreen, setFullscreen] = useState(false);
     const timeout = useRef(null);
     const interval = useRef(null);
     const alarmInterval = useRef(null);
+    const timeblock = useRef(null);
     const [play] = useSound(sound, { interrupt: true });
-    const [alarm] = useSound(alarmSound, { interrupt: true });
+    const [alarm, { stop }] = useSound(alarmSound, { interrupt: true });
 
     useEffect(() => {
         if (running) {
             clearTimeout(timeout.current);
             clearInterval(interval.current);
+            setNow(new Date());
+            setPlayed(false);
             timeout.current = setTimeout(() => {
                 setNow(new Date());
                 setPlayed(false);
@@ -36,6 +38,9 @@ const Countdown = (props) => {
 
     useEffect(() => {
         if (date - now <= 0 && running) {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            };
             alarm();
             alarmInterval.current = setInterval(() => {
                 alarm();
@@ -70,7 +75,7 @@ const Countdown = (props) => {
                         running &&
                         <IconButton
                             theme={props.theme}
-                            onClick={() => setFullscreen(true)}
+                            onClick={() => timeblock.current.requestFullscreen()}
                         >
                             fullscreen
                         </IconButton>
@@ -111,7 +116,7 @@ const Countdown = (props) => {
                         theme={props.theme}
                         time={date - now}
                         type="time"
-                        fullscreen={fullscreen}
+                        ref={timeblock}
                     />
                 </>
             }
@@ -121,7 +126,12 @@ const Countdown = (props) => {
                 setVisible={setModal}
                 title="Уведомление"
                 footer="Подтвердить"
-                onAccept={() => console.dir(alarm)}
+                onAccept={() => {
+                    stop();
+                    clearInterval(alarmInterval.current);
+                    setModal(false);
+                }}
+                fixed
             >
                 <div className="mw500">
                     <h3>Время обратного отсчёта истекло.</h3>
