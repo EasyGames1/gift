@@ -17,6 +17,9 @@ export default class Time {
     static unixToDate(unix) {
         return new Date(unix * 1000);
     };
+    static inptimeToMs(value) {
+        return Number((Number(value.substring(0, 2)) * 3600000) + (Number(value.substring(3, 5)) * 60000) + (value.length < 6 ? 0 : Number(value.substring(6, 8)) * 1000));
+    };
     static msToTime(duration) {
         if (duration == undefined) {
             return '';

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import Time from '../../../API/Time';
 import DateInput from '../DateInput/DateInput';
 import IconButton from '../IconButton/IconButton';
 import TimeBlock from '../TimeBlock/TimeBlock';
@@ -107,11 +108,16 @@ const Countdown = (props) => {
             {
                 running &&
                 <>
-                    <TimeBlock
-                        theme={props.theme}
-                        time={date - now}
-                        type="date"
-                    />
+                    {
+                        (Time.msToTime(date - now)?.years !== 0 ||
+                            Time.msToTime(date - now)?.months !== 0 ||
+                            Time.msToTime(date - now)?.days !== 0) &&
+                        <TimeBlock
+                            theme={props.theme}
+                            time={date - now}
+                            type="date"
+                        />
+                    }
                     <TimeBlock
                         theme={props.theme}
                         time={date - now}

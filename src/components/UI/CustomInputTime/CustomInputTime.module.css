@@ -1,0 +1,20 @@
+.inp {
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0px 5px 10px 2px rgb(0 0 0 / 10%);
+    color: #444;
+    cursor: pointer;
+}
+.inp::-webkit-calendar-picker-indicator {
+    filter: invert(30%);
+    cursor: pointer;
+}
+.inp.dark {
+    color: #ccc;
+    background: #191919;
+}
+.inp.dark::-webkit-calendar-picker-indicator {
+    filter: invert(70%);
+}
