@@ -1,0 +1,65 @@
+$red: #fd1a15
+$green: #007177
+$btnWidth: 25px
+$switchWidth: 50px
+$switchHeight: 25px
+$padding: 0px
+
+.checkbox
+  display: none
+
+.checkbox + label
+  min-width: 50px
+  display: inline-block
+  position: relative
+  width: $switchWidth
+  height: $switchHeight
+  background: linear-gradient(to right, $red 0, #fc8b34 45%, #7fd03e 55%, $green 100%) 0 0
+  background-size: (($switchWidth * 2) + 50) 100%
+  border-radius: 70px
+  padding: $padding
+  cursor: pointer
+  transition: all 300ms ease
+  box-shadow: 0 0px 10px rgba(0, 0, 0, 0.2) inset
+  
+  &:before
+    content: '0'
+    width: $btnWidth
+    height: $btnWidth
+    position: absolute
+    left: $padding
+    top: $padding
+    border-radius: 100%
+    background: #fff
+    text-align: center
+    line-height: ($switchHeight - ($padding * 2))
+    font-family: 'Cabin', sans-serif
+    font-size: btnWidth
+    font-weight: bold
+    color: $red
+    letter-spacing: 3px
+    text-transform: uppercase
+    transition: left 300ms ease, color 500ms ease, transform 150ms ease
+  
+  &:active
+    &:before
+      transform: scale(0.95)
+
+.checkbox:checked + label
+  background-position-x: -($switchWidth + 50)
+  &:before
+    content: '1'
+    padding-left: 2px
+    color: $green
+    left: ($switchWidth - $btnWidth - $padding)
+
+.checkbox.disabled + label
+  background: transparent
+  cursor: not-allowed
+
+  &:before
+    content: ''
+    background: #adadad
+  &:active
+    &:before
+      transform: none

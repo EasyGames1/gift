@@ -1,0 +1,24 @@
+.chart {
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 500px) {
+    .chart {
+        max-width: 90%;
+    }
+}
+@media (max-width: 425px) {
+    .chart {
+        max-width: 90%;
+    }
+}
+@media (max-width: 375px) {
+    .chart {
+        max-width: 95%;
+    }
+}
+@media (max-width: 320px) {
+    .chart {
+        max-width: 97.5%;
+    }
+}

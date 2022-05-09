@@ -1,0 +1,42 @@
+@keyframes highlight {
+    0% {
+        background: rgba(100, 100, 100, 0.1)
+    }
+    50% {
+        background: rgba(100, 100, 100, 0.2);
+    }
+    100% {
+        background: rgba(100, 100, 100, 0.1);
+    }
+}
+.ingr {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 1rem;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.edit input {
+    width: 100%;
+}
+
+.edit span {
+    font-size: 36px;
+}
+.highlight {
+    animation: 500ms highlight infinite;
+    animation-iteration-count: 3;
+}

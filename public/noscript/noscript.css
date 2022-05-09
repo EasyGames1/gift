@@ -1,0 +1,19 @@
+.black {
+    color: black;
+}
+noscript {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: red;
+    user-select: none;
+}
+noscript h1 {
+    max-width: 70%;
+}

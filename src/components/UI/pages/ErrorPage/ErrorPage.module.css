@@ -1,0 +1,12 @@
+.fullScreen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100vh - 50px);
+}
+.fullScreen h1 {
+    color: red;
+    font-size: 100px;
+}

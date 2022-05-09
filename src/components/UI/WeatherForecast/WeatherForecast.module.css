@@ -1,0 +1,11 @@
+.link {
+    text-decoration: none;
+    color: #fff;
+    text-align: center;
+}
+.link:hover {
+    color: #fff;
+}
+.weather {
+    text-align: center;
+}

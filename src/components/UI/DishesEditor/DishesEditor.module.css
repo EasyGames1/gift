@@ -1,0 +1,27 @@
+.editor {
+    background: #fff;
+    box-shadow: 0px 5px 10px 2px rgb(0 0 0 / 10%);
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom: 100px !important;
+    max-width: 500px;
+    margin: auto;
+}
+.editor.dark {
+    background: #191919;
+}
+.name {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+}
+.name input {
+    max-width: 125px;
+    font-size: 16px;
+    padding: 5px 5px;
+    text-align: center;
+}
+.name button {
+    width: 125px;
+}

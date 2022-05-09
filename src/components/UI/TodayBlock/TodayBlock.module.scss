@@ -1,0 +1,117 @@
+.date {
+    max-width: 200px;
+    margin: auto;
+    margin-top: 15px;
+    background-color: #fff;
+    box-shadow: 0px 5px 10px 2px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.date *:last-child {
+    margin-left: 5px;
+}
+
+.date.dark {
+    background: #191919;
+    color: #FAFAFA;
+}
+
+.clock {
+    max-width: 700px;
+    margin: auto;
+    margin-top: 30px;
+    background-color: #fff;
+    box-shadow: 0px 5px 10px 2px rgb(0 0 0 / 10%);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+.clock.dark {
+    background: #191919;
+    color: #ccc;
+}
+
+.item {
+    text-align: center;
+    position: relative;
+
+    &:not(:last-child):before,
+    &:not(:last-child):after {
+        content: "";
+        background-color: #ccc;
+        height: 5px;
+        width: 5px;
+        border-radius: 50%;
+        display: block;
+        position: absolute;
+        right: 0;
+    }
+
+    &:not(:last-child):before {
+        top: 25%;
+    }
+
+    &:not(:last-child):after {
+        top: 40%;
+    }
+}
+
+.clock.dark .item:not(:last-child)::before,
+.clock.dark .item:not(:last-child)::after {
+    background: #444;
+}
+
+
+.timer {
+    color: #444;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.clock.dark .item .timer {
+    color: #ccc;
+}
+
+.label {
+    color: #444;
+    text-transform: uppercase;
+    font-size: .8rem;
+    margin-top: -15px;
+}
+
+.clock.dark .item .label {
+    color: #888
+}
+
+@media (max-width: 767px) {
+    .clock {
+        max-width: 90vw;
+        margin-top: 15px;
+    }
+
+    .timer {
+        font-size: 1.8rem;
+    }
+
+    .item:nth-child(1):before,
+    .item:nth-child(1):after {
+        display: none;
+    }
+
+    .item:not(:first-child):before {
+        top: 35%;
+    }
+
+    .item:not(:first-child)::after {
+        top: 55%;
+    }
+}
+
+@media (max-width: 650px) {
+    .timer {
+        font-size: 1.5rem;
+    }
+}

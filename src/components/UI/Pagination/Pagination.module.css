@@ -1,0 +1,42 @@
+.pagination {
+    background: #e9ecef;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #c8ccd1;
+    border-radius: 8px;
+    padding: 8px;
+    width: 300px;
+    margin: auto;
+}
+
+.pagination.dark {
+    background: #191919;
+    border: 2px solid #141414;
+}
+
+.control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.keys {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    padding: 8px;
+    margin: 0 8px;
+}
+
+.keys.dark {
+    border: 2px solid #141414;
+}

@@ -1,0 +1,11 @@
+.textarea {
+    background: transparent;
+    outline: none;
+    border: 1px solid #4161ee;
+    color: #444;
+    resize: none;
+    padding: 8px;
+}
+.textarea.dark {
+    color: #fff;
+}
