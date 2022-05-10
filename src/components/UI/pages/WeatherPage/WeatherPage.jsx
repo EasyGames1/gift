@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './WeatherPage.module.css';
 import AboutNowWeather from '../../AboutNowWeather/AboutNowWeather';
 import WeatherForecast from '../../WeatherForecast/WeatherForecast';
 import GeoEnable from '../../GeoEnable/GeoEnable';
 
 const WeatherPage = (props) => {
+
+    useEffect(() => {
+        document.getElementById("title").textContent = "Погода";
+
+        return () => {
+            document.getElementById("title").textContent = "Подарок";
+        };
+    }, []);
 
     return (
         <>

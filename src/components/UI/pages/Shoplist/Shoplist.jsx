@@ -51,6 +51,14 @@ const Shoplist = (props) => {
         });
     }, [hidden]);
 
+    useEffect(() => {
+        document.getElementById("title").textContent = "Список покупок";
+
+        return () => {
+            document.getElementById("title").textContent = "Подарок";
+        };
+    }, []);
+
     return (
         <div>
             <h1 className='text-center'>Список покупок</h1>

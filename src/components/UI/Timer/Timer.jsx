@@ -308,7 +308,7 @@ const Timer = (props) => {
                                                         {
                                                             el.title
                                                         }
-                                                        <small style={{color: "#ccc", marginLeft: '5px'}}>
+                                                        <small style={{color: "#999", marginLeft: '5px'}}>
                                                             {
                                                                 el.time
                                                             }

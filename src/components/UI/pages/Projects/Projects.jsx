@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Instructions from '../../Instructions/Instructions';
 import ProjectList from '../../ProjectList/ProjectList';
 

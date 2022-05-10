@@ -60,6 +60,14 @@ const IMT = (props) => {
         };
     }, [highlight]);
 
+    useEffect(() => {
+        document.getElementById("title").textContent = "Индекс массы тела";
+
+        return () => {
+            document.getElementById("title").textContent = "Подарок";
+        };
+    }, []);
+
     return (
         <div className={classes.IMT}>
             <h1 className='text-center jcsb'>
@@ -69,11 +77,11 @@ const IMT = (props) => {
                     style={current === '' ? { color: "#37911F", filter: "invert(0%)" } :
                         ((!/^\s*$/.test(height) && height >= 40 && height <= 300) || data[data.length - 1]?.height) &&
                             (!/^\s*$/.test(weight) && weight >= 2 && weight <= 500) ?
-                            {color: "#4361ee", filter: "invert(0%)"} :
+                            { color: "#4361ee", filter: "invert(0%)" } :
                             { color: "#BA0000", filter: "invert(0%)" }}
                     onClick={() => {
                         if (((!/^\s*$/.test(height) && height >= 40 && height <= 300) || data[data.length - 1]?.height) &&
-                        (!/^\s*$/.test(weight) && weight >= 2 && weight <= 500)) {
+                            (!/^\s*$/.test(weight) && weight >= 2 && weight <= 500)) {
                             save();
                         } else {
                             setCurrent(current === '' ? 0 : '');

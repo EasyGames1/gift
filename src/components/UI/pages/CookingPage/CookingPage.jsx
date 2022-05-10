@@ -38,8 +38,10 @@ const CookingPage = (props) => {
         if (props?.recipesLimit === '') {
             props?.setRecipesLimit(20);
         };
+        document.getElementById("title").textContent = "Кулинария";
         return () => {
             setRecipes('');
+            document.getElementById("title").textContent = "Подарок";
         };
     }, []);
 

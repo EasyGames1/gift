@@ -139,6 +139,14 @@ const Todo = (props) => {
         setNewCategory('');
     }, [modal]);
 
+    useEffect(() => {
+        document.getElementById("title").textContent = "Список дел";
+
+        return () => {
+            document.getElementById("title").textContent = "Подарок";
+        };
+    }, []);
+
     return (
         <div>
             <h1 className="jcsb mw500 mb-3">
