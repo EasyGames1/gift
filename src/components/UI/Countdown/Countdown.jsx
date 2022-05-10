@@ -18,11 +18,12 @@ const Countdown = (props) => {
     const interval = useRef(null);
     const alarmInterval = useRef(null);
     const timeblock = useRef(null);
-    const [play] = useSound(sound, { interrupt: true });
+    const [play, { pause }] = useSound(sound, { interrupt: true });
     const [alarm, { stop }] = useSound(alarmSound, { interrupt: true });
 
     useEffect(() => {
         if (running) {
+            clearInterval(alarmInterval.current);
             clearTimeout(timeout.current);
             clearInterval(interval.current);
             setNow(new Date());
@@ -58,12 +59,14 @@ const Countdown = (props) => {
 
     useEffect(() => {
         return () => {
+            clearInterval(alarmInterval.current);
             clearTimeout(timeout.current);
             clearInterval(interval.current);
             setRunning(false);
             setModal(false);
             setDate(null);
             setNow(null);
+            document.getElementById("title").textContent = "Подарок";
         };
     }, []);
 
@@ -82,26 +85,25 @@ const Countdown = (props) => {
                         </IconButton>
                     }
                     <div className="jcsb">
-                        <div style={{ maxWidth: "150px", fontSize: "1.3rem" }}>
-                            <DateInput
-                                theme={props.theme}
-                                date={date}
-                                setDate={setDate}
-                                start={new Date()}
-                                onChange={() => !running && setRunning(true)}
-                            />
-                        </div>
-                        <IconButton
-                            theme={props.theme}
-                            style={running ? { color: "#BA0000", filter: "invert(0%)" } : { color: "#37911F", filter: "invert(0%)" }}
-                            onClick={() => setRunning(!running)}
-                        >
-                            {
-                                running ?
-                                    "stop" :
-                                    "play_arrow"
-                            }
-                        </IconButton>
+                        {
+                            running ?
+                                <IconButton
+                                    theme={props.theme}
+                                    style={{ color: "#BA0000", filter: "invert(0%)" }}
+                                    onClick={() => setRunning(false)}
+                                >
+                                    stop
+                                </IconButton> :
+                                <div style={{ maxWidth: "150px", fontSize: "1.3rem" }}>
+                                    <DateInput
+                                        theme={props.theme}
+                                        date={date}
+                                        setDate={setDate}
+                                        start={new Date()}
+                                        onChange={() => !running && setRunning(true)}
+                                    />
+                                </div>
+                        }
                     </div>
                 </div>
             </h3>

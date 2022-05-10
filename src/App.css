@@ -25,6 +25,10 @@ body {
   color: #06d6a0;
 }
 
+.red {
+  color: red;
+}
+
 .blur {
   position: fixed;
   width: 100%;
@@ -204,6 +208,16 @@ body {
 
 .mw500 {
   max-width: 500px;
+  margin: auto;
+}
+
+.mw700 {
+  max-width: 700px;
+  margin: auto;
+}
+
+.mw900 {
+  max-width: 900px;
   margin: auto;
 }
 

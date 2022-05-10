@@ -18,7 +18,7 @@ const TimeBlock = forwardRef((props, ref) => {
     }, []);
 
     return (
-        <div className={`${classes.clock} ${classes[props.theme]} row`} ref={ref || null}>
+        <div className={`${classes.clock} ${classes[props.theme]} ${props.className || ""} row`} ref={ref || null}>
             <div className={`${classes.item} col-4`}>
                 <p className={classes.timer}>
                     {
