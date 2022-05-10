@@ -5,6 +5,7 @@
     padding: 8px;
     box-shadow: 0px 5px 10px 2px rgb(0 0 0 / 10%);
     color: #444;
+    background: #fff;
     cursor: pointer;
 }
 .inp::-webkit-calendar-picker-indicator {
