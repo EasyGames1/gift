@@ -19,6 +19,11 @@ const projectsUseful = [
         link: "shoplist"
     },
     {
+        title: "Работа со временем",
+        icon: "schedule",
+        link: "time"
+    },
+    {
         title: "Кулинария",
         icon: "restaurant_menu",
         link: "cooking/pages/1"
@@ -27,11 +32,6 @@ const projectsUseful = [
         title: "Индекс массы тела",
         icon: "monitor_weight",
         link: "weight",
-    },
-    {
-        title: "Работа со временем",
-        icon: "schedule",
-        link: "time"
     }
 ];
 
