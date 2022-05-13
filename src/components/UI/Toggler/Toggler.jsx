@@ -23,6 +23,7 @@ const Toggler = (props) => {
                         props.setChecked(!props.checked);
                         if (isSound) {
                             play();
+                            window.navigator.vibrate(10);
                         };
                     };
                 }}
