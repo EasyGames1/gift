@@ -25,7 +25,7 @@ const Happy_Birthday = (props) => {
             width = canvas.current.width,
             height = canvas.current.height,
             MAX_PARTICLES = 100000,
-            NFIELDS = 5,
+            NFIELDS = 50,
             PARTICLES_LENGTH = MAX_PARTICLES * NFIELDS,
             MAX_AGE = 5,
             GRAVITY = 50,
@@ -73,9 +73,7 @@ const Happy_Birthday = (props) => {
             t0 = t1;
             ctx.fillStyle = bg;
             ctx.fillRect(0, 0, width, height);
-            if (iteration % 6 === 0) {
-                emit(width * rnd(), height * rnd());
-            };
+            emit(width * rnd(), height * rnd());
             const imgdata = ctx.getImageData(0, 0, width, height),
                 data = imgdata.data;
             for (let i = 0; i < PARTICLES_LENGTH; i += NFIELDS) {
@@ -92,25 +90,10 @@ const Happy_Birthday = (props) => {
                 const offset = (x + y * width) * 4;
 
                 // set pixel
-                data[offset] += "255";
-                data[offset + 1] += "132";
-                data[offset + 2] += "132";
+                data[offset] += rnd() * 255;
+                data[offset + 1] += rnd() * 255;
+                data[offset + 2] += rnd() * 255;
             };
-            // if (iteration % 500 === 0) {
-            //     ctx.fillStyle = bg;
-            //     ctx.fillRect(0, 0, width, height);
-            // };
-            // const particle = () => {
-            //     ctx.fillStyle = `hsl(${rnd() * 360}, 50%, 50%)`;
-            //     ctx.beginPath();
-            //     ctx.arc(width * rnd(), height * rnd(), PI, PI, 3 * PI);
-            //     ctx.lineWidth = 1;
-            //     ctx.fill();
-            //     ctx.closePath();
-            // };
-            // for (let i = 0; i < 5; i++) {
-            //     particle();
-            // };
             iteration++;
             ctx.putImageData(imgdata, 0, 0);
             frame.current = requestAnimationFrame(draw, canvas.current);
@@ -121,6 +104,7 @@ const Happy_Birthday = (props) => {
         draw();
 
         return () => {
+            cancelAnimationFrame(frame.current);
             window.removeEventListener("resize", reload);
             window.removeEventListener('mousemove', getMouseCoords);
             document.querySelector('html').style.overflow = "overflow";
