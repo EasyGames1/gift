@@ -71,6 +71,8 @@ const Router = (props) => {
                     setTodoNewDefault={props.setTodoNewDefault}
                     isSound={props.isSound}
                     setIsSound={props.setIsSound}
+                    isVibration={props.isVibration}
+                    setIsVibration={props.setIsVibration}
                 />
         },
         {

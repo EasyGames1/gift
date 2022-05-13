@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Overflow from './components/UI/Overflow/Overflow';
 import AOS from 'aos/dist/aos';
 import 'aos/dist/aos.css'
-import { SoundContext } from './context';
+import { SoundContext, VibrationContext } from './context';
 
 const App = () => {
   const getGeo = (state) => {
@@ -81,6 +81,7 @@ const App = () => {
   const [settingsVisible, setSettingsVisible] = useState(false);
   const [isGeo, setIsGeo] = useState(Storage.getUserData("settings")?.isGeo == undefined ? true : Storage.getUserData("settings")?.isGeo);
   const [isSound, setIsSound] = useState(Storage.getUserData("settings")?.isSound == undefined ? true : Storage.getUserData("settings")?.isSound);
+  const [isVibration, setIsVibration] = useState(Storage.getUserData("settings")?.isSound == undefined ? true : Storage.getUserData("settings")?.isSound);
   const [coords, setCoords] = useState('');
   const [isWeatherGraph, setIsWeatherGraph] = useState(
     Storage.getUserData("settings")?.extended?.weather?.isWeatherGraph
@@ -275,6 +276,13 @@ const App = () => {
       isSound: isSound
     });
   }, [isSound]);
+
+  useEffect(() => {
+    Storage.setUserData("settings", {
+      ...Storage.getUserData("settings"),
+      isVibration: isVibration
+    });
+  }, [isVibration]);
   useEffect(() => {
     Storage.setUserData("settings", {
       ...Storage.getUserData("settings"),
@@ -344,62 +352,66 @@ const App = () => {
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
         <SoundContext.Provider value={isSound}>
-          <BrowserRouter>
-            <Overflow
-              theme={theme}
-              setTheme={setTheme}
-              settingsVisible={settingsVisible}
-              setSettingsVisible={setSettingsVisible}
-              isGeo={isGeo}
-              setIsGeo={setIsGeo}
-              isWeatherGraph={isWeatherGraph}
-              setIsWeatherGraph={setIsWeatherGraph}
-              isForbiddenWeatherGraph={isForbiddenWeatherGraph}
-              setIsForbiddenWeatherGraph={setIsForbiddenWeatherGraph}
-              AgentModalGeo={AgentModalGeo}
-              setAgentModalGeo={setAgentModalGeo}
-              coords={coords}
-            />
-            <Router
-              theme={theme}
-              setTheme={setTheme}
-              settingsVisible={settingsVisible}
-              setSettingsVisible={setSettingsVisible}
-              isGeo={isGeo}
-              setIsGeo={setIsGeo}
-              isSound={isSound}
-              setIsSound={setIsSound}
-              isWeatherGraph={isWeatherGraph}
-              setIsWeatherGraph={setIsWeatherGraph}
-              isForbiddenWeatherGraph={isForbiddenWeatherGraph}
-              setIsForbiddenWeatherGraph={setIsForbiddenWeatherGraph}
-              AgentModalGeo={AgentModalGeo}
-              setAgentModalGeo={setAgentModalGeo}
-              coords={coords}
-              isRecipes={isRecipes}
-              setIsRecipes={setIsRecipes}
-              isRecipesForbidden={isRecipesForbidden}
-              setIsRecipesForbidden={setIsRecipesForbidden}
-              recipes={recipes}
-              setRecipes={setRecipes}
-              recipesLimit={recipesLimit}
-              setRecipesLimit={setRecipesLimit}
-              recipesEditorDefault={recipesEditorDefault}
-              setRecipesEditorDefault={setRecipesEditorDefault}
-              isReadyRecipesImages={isReadyRecipesImages}
-              setIsReadyRecipesImages={setIsReadyRecipesImages}
-              needToResetMyDishes={needToResetMyDishes}
-              setNeedToResetMyDishes={setNeedToResetMyDishes}
-              deleteRecipesConfirm={deleteRecipesConfirm}
-              setDeleteRecipesConfirm={setDeleteRecipesConfirm}
-              newPurchase={newPurchase}
-              setNewPurchase={setNewPurchase}
-              imt={imt}
-              setimt={setimt}
-              todoNewDefault={todoNewDefault}
-              setTodoNewDefault={setTodoNewDefault}
-            />
-          </BrowserRouter>
+          <VibrationContext.Provider value={isVibration}>
+            <BrowserRouter>
+              <Overflow
+                theme={theme}
+                setTheme={setTheme}
+                settingsVisible={settingsVisible}
+                setSettingsVisible={setSettingsVisible}
+                isGeo={isGeo}
+                setIsGeo={setIsGeo}
+                isWeatherGraph={isWeatherGraph}
+                setIsWeatherGraph={setIsWeatherGraph}
+                isForbiddenWeatherGraph={isForbiddenWeatherGraph}
+                setIsForbiddenWeatherGraph={setIsForbiddenWeatherGraph}
+                AgentModalGeo={AgentModalGeo}
+                setAgentModalGeo={setAgentModalGeo}
+                coords={coords}
+              />
+              <Router
+                theme={theme}
+                setTheme={setTheme}
+                settingsVisible={settingsVisible}
+                setSettingsVisible={setSettingsVisible}
+                isGeo={isGeo}
+                setIsGeo={setIsGeo}
+                isSound={isSound}
+                setIsSound={setIsSound}
+                isVibration={isVibration}
+                setIsVibration={setIsVibration}
+                isWeatherGraph={isWeatherGraph}
+                setIsWeatherGraph={setIsWeatherGraph}
+                isForbiddenWeatherGraph={isForbiddenWeatherGraph}
+                setIsForbiddenWeatherGraph={setIsForbiddenWeatherGraph}
+                AgentModalGeo={AgentModalGeo}
+                setAgentModalGeo={setAgentModalGeo}
+                coords={coords}
+                isRecipes={isRecipes}
+                setIsRecipes={setIsRecipes}
+                isRecipesForbidden={isRecipesForbidden}
+                setIsRecipesForbidden={setIsRecipesForbidden}
+                recipes={recipes}
+                setRecipes={setRecipes}
+                recipesLimit={recipesLimit}
+                setRecipesLimit={setRecipesLimit}
+                recipesEditorDefault={recipesEditorDefault}
+                setRecipesEditorDefault={setRecipesEditorDefault}
+                isReadyRecipesImages={isReadyRecipesImages}
+                setIsReadyRecipesImages={setIsReadyRecipesImages}
+                needToResetMyDishes={needToResetMyDishes}
+                setNeedToResetMyDishes={setNeedToResetMyDishes}
+                deleteRecipesConfirm={deleteRecipesConfirm}
+                setDeleteRecipesConfirm={setDeleteRecipesConfirm}
+                newPurchase={newPurchase}
+                setNewPurchase={setNewPurchase}
+                imt={imt}
+                setimt={setimt}
+                todoNewDefault={todoNewDefault}
+                setTodoNewDefault={setTodoNewDefault}
+              />
+            </BrowserRouter>
+          </VibrationContext.Provider>
         </SoundContext.Provider>
       </ThemeProvider>
     </div>

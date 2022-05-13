@@ -37,7 +37,16 @@ const Settings = (props) => {
                         isToggler: true,
                         toggler: props.isSound,
                         setToggler: props.setIsSound
-                    }
+                    },
+                    {
+                        title: 'Вибрации',
+                        desc: 'При отключении этой функции вибрации будильника и вибрации обратного отсчёта продолжат функционировать.',
+                        class: `${classes.permission} mt-3`,
+                        isToggler: true,
+                        toggler: props.isVibration,
+                        setToggler: props.setIsVibration
+                    },
+                    
                 ]
             },
             {

@@ -120,6 +120,9 @@ const Timer = (props) => {
         clearTimeout(timeout.current);
         setRunning(false);
         document.getElementById("title").textContent = "Таймер сработал!";
+        if (window?.navigator?.vibrate) {
+            window.navigator.vibrate([200, 100, 300, 100], 1000);
+        };
         play();
         soundInterval.current = setInterval(() => {
             play();
@@ -308,7 +311,7 @@ const Timer = (props) => {
                                                         {
                                                             el.title
                                                         }
-                                                        <small style={{color: "#999", marginLeft: '5px'}}>
+                                                        <small style={{ color: "#999", marginLeft: '5px' }}>
                                                             {
                                                                 el.time
                                                             }
@@ -316,7 +319,7 @@ const Timer = (props) => {
                                                     </div>
                                                     <IconButton
                                                         theme={props.theme}
-                                                        style={{color: "#BA0000", filter: "invert(0%)"}}
+                                                        style={{ color: "#BA0000", filter: "invert(0%)" }}
                                                         onClick={() => setMysnippets(mysnippets.filter((s, x) => x !== i))}
                                                     >
                                                         delete
@@ -341,6 +344,9 @@ const Timer = (props) => {
                     document.getElementById("title").textContent = "Работа со временем";
                     stop();
                     clearInterval(soundInterval.current);
+                    if (window?.navigator?.vibrate) {
+                        window.navigator.vibrate(0);
+                    };
                     setModal(false);
                 }}
                 fixed
