@@ -17,7 +17,7 @@ const Happy_Birthday = (props) => {
         canvas.current.width = window.innerWidth;
         canvas.current.height = window.innerHeight - 56;
         const ctx = canvas.current.getContext('2d'),
-            bg = props.theme === "dark" ? "#000000" : "#ffffff",
+            bg = "#000000",
             PI = Math.PI,
             rnd = Math.random,
             cos = Math.cos,
@@ -27,9 +27,9 @@ const Happy_Birthday = (props) => {
             MAX_PARTICLES = 100000,
             NFIELDS = 50,
             PARTICLES_LENGTH = MAX_PARTICLES * NFIELDS,
-            MAX_AGE = 5,
+            MAX_AGE = 1.2,
             GRAVITY = 50,
-            DRAG = 0.999;
+            DRAG = 1;
         let
             iteration = 0,
             particles = new Float32Array(PARTICLES_LENGTH),
@@ -77,19 +77,14 @@ const Happy_Birthday = (props) => {
             const imgdata = ctx.getImageData(0, 0, width, height),
                 data = imgdata.data;
             for (let i = 0; i < PARTICLES_LENGTH; i += NFIELDS) {
-                // check age
                 if ((particles[i + 4] += td) > MAX_AGE) continue;
-                // ~~ = double bitwise inversion = Math.ceil
                 let x = ~~(particles[i] = (particles[i] + (particles[i + 2] *= DRAG) * td)),
                     y = ~~(particles[i + 1] = (particles[i + 1] + (particles[i + 3] = (particles[i + 3] + GRAVITY * td) * DRAG) * td));
 
-                // check bounds
                 if (checkBounds(x, y)) continue;
 
-                // calculate offset
                 const offset = (x + y * width) * 4;
 
-                // set pixel
                 data[offset] += rnd() * 255;
                 data[offset + 1] += rnd() * 255;
                 data[offset + 2] += rnd() * 255;
