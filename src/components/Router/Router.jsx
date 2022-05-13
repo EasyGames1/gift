@@ -35,7 +35,7 @@ const Router = (props) => {
     const routes = [
         {
             path: "/",
-            element: <Happy_Birthday />
+            element: <Happy_Birthday theme={props.theme}/>
         },
         {
             path: "/settings",
