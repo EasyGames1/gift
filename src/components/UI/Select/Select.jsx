@@ -1,8 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { SoundContext } from '../../../context';
 import classes from './Select.module.css';
+import sound from '../../../media/sounds/button.mp3';
+import useSound from 'use-sound';
 
 const Select = (props) => {
     const [show, setShow] = useState(false);
+    const isSound = useContext(SoundContext);
+    const [play] = useSound(sound, { interrupt: true });
 
     const showFunc = (e) => {
         e.stopPropagation();
@@ -15,6 +20,9 @@ const Select = (props) => {
 
     const elEvent = (e) => {
         props.onChange(e.props.children);
+        if (isSound) {
+            play();
+        };
         setShow(false);
     };
 
@@ -36,6 +44,9 @@ const Select = (props) => {
     useEffect(() => {
         if (props.title !== '') {
             props.onChange(props.title);
+            if (isSound) {
+                play();
+            };
             setShow(false);
         } else {
             props.setTitle(props?.children[0]?.props?.children);

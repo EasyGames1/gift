@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import useSound from 'use-sound';
+import { SoundContext } from '../../../context';
+import sound from '../../../media/sounds/toggle.mp3';
 import classes from './Toggler.module.sass';
 
 const Toggler = (props) => {
+    const [play] = useSound(sound, { interrupt: true });
+    const isSound = useContext(SoundContext);
+
     return (
         <>
             <input
@@ -15,6 +21,9 @@ const Toggler = (props) => {
                 onClick={() => {
                     if (!props.disabled) {
                         props.setChecked(!props.checked);
+                        if (isSound) {
+                            play();
+                        };
                     };
                 }}
                 className={`${props.className}`}

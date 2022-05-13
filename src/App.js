@@ -9,6 +9,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Overflow from './components/UI/Overflow/Overflow';
 import AOS from 'aos/dist/aos';
 import 'aos/dist/aos.css'
+import { SoundContext } from './context';
 
 const App = () => {
   const getGeo = (state) => {
@@ -342,62 +343,64 @@ const App = () => {
     <div>
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <GlobalStyles />
-        <BrowserRouter>
-          <Overflow
-            theme={theme}
-            setTheme={setTheme}
-            settingsVisible={settingsVisible}
-            setSettingsVisible={setSettingsVisible}
-            isGeo={isGeo}
-            setIsGeo={setIsGeo}
-            isWeatherGraph={isWeatherGraph}
-            setIsWeatherGraph={setIsWeatherGraph}
-            isForbiddenWeatherGraph={isForbiddenWeatherGraph}
-            setIsForbiddenWeatherGraph={setIsForbiddenWeatherGraph}
-            AgentModalGeo={AgentModalGeo}
-            setAgentModalGeo={setAgentModalGeo}
-            coords={coords}
-          />
-          <Router
-            theme={theme}
-            setTheme={setTheme}
-            settingsVisible={settingsVisible}
-            setSettingsVisible={setSettingsVisible}
-            isGeo={isGeo}
-            setIsGeo={setIsGeo}
-            isSound={isSound}
-            setIsSound={setIsSound}
-            isWeatherGraph={isWeatherGraph}
-            setIsWeatherGraph={setIsWeatherGraph}
-            isForbiddenWeatherGraph={isForbiddenWeatherGraph}
-            setIsForbiddenWeatherGraph={setIsForbiddenWeatherGraph}
-            AgentModalGeo={AgentModalGeo}
-            setAgentModalGeo={setAgentModalGeo}
-            coords={coords}
-            isRecipes={isRecipes}
-            setIsRecipes={setIsRecipes}
-            isRecipesForbidden={isRecipesForbidden}
-            setIsRecipesForbidden={setIsRecipesForbidden}
-            recipes={recipes}
-            setRecipes={setRecipes}
-            recipesLimit={recipesLimit}
-            setRecipesLimit={setRecipesLimit}
-            recipesEditorDefault={recipesEditorDefault}
-            setRecipesEditorDefault={setRecipesEditorDefault}
-            isReadyRecipesImages={isReadyRecipesImages}
-            setIsReadyRecipesImages={setIsReadyRecipesImages}
-            needToResetMyDishes={needToResetMyDishes}
-            setNeedToResetMyDishes={setNeedToResetMyDishes}
-            deleteRecipesConfirm={deleteRecipesConfirm}
-            setDeleteRecipesConfirm={setDeleteRecipesConfirm}
-            newPurchase={newPurchase}
-            setNewPurchase={setNewPurchase}
-            imt={imt}
-            setimt={setimt}
-            todoNewDefault={todoNewDefault}
-            setTodoNewDefault={setTodoNewDefault}
-          />
-        </BrowserRouter>
+        <SoundContext.Provider value={isSound}>
+          <BrowserRouter>
+            <Overflow
+              theme={theme}
+              setTheme={setTheme}
+              settingsVisible={settingsVisible}
+              setSettingsVisible={setSettingsVisible}
+              isGeo={isGeo}
+              setIsGeo={setIsGeo}
+              isWeatherGraph={isWeatherGraph}
+              setIsWeatherGraph={setIsWeatherGraph}
+              isForbiddenWeatherGraph={isForbiddenWeatherGraph}
+              setIsForbiddenWeatherGraph={setIsForbiddenWeatherGraph}
+              AgentModalGeo={AgentModalGeo}
+              setAgentModalGeo={setAgentModalGeo}
+              coords={coords}
+            />
+            <Router
+              theme={theme}
+              setTheme={setTheme}
+              settingsVisible={settingsVisible}
+              setSettingsVisible={setSettingsVisible}
+              isGeo={isGeo}
+              setIsGeo={setIsGeo}
+              isSound={isSound}
+              setIsSound={setIsSound}
+              isWeatherGraph={isWeatherGraph}
+              setIsWeatherGraph={setIsWeatherGraph}
+              isForbiddenWeatherGraph={isForbiddenWeatherGraph}
+              setIsForbiddenWeatherGraph={setIsForbiddenWeatherGraph}
+              AgentModalGeo={AgentModalGeo}
+              setAgentModalGeo={setAgentModalGeo}
+              coords={coords}
+              isRecipes={isRecipes}
+              setIsRecipes={setIsRecipes}
+              isRecipesForbidden={isRecipesForbidden}
+              setIsRecipesForbidden={setIsRecipesForbidden}
+              recipes={recipes}
+              setRecipes={setRecipes}
+              recipesLimit={recipesLimit}
+              setRecipesLimit={setRecipesLimit}
+              recipesEditorDefault={recipesEditorDefault}
+              setRecipesEditorDefault={setRecipesEditorDefault}
+              isReadyRecipesImages={isReadyRecipesImages}
+              setIsReadyRecipesImages={setIsReadyRecipesImages}
+              needToResetMyDishes={needToResetMyDishes}
+              setNeedToResetMyDishes={setNeedToResetMyDishes}
+              deleteRecipesConfirm={deleteRecipesConfirm}
+              setDeleteRecipesConfirm={setDeleteRecipesConfirm}
+              newPurchase={newPurchase}
+              setNewPurchase={setNewPurchase}
+              imt={imt}
+              setimt={setimt}
+              todoNewDefault={todoNewDefault}
+              setTodoNewDefault={setTodoNewDefault}
+            />
+          </BrowserRouter>
+        </SoundContext.Provider>
       </ThemeProvider>
     </div>
   );

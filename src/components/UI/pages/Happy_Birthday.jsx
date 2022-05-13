@@ -13,7 +13,7 @@ const Happy_Birthday = (props) => {
         document.querySelector('html').style.overflow = "hidden";
         setTimeout(() => {
             document.querySelector('html').style.overflow = "hidden";
-        }, 310);
+        }, 500);
         canvas.current.width = window.innerWidth;
         canvas.current.height = window.innerHeight - 56;
         const ctx = canvas.current.getContext('2d'),
@@ -34,9 +34,7 @@ const Happy_Birthday = (props) => {
             iteration = 0,
             particles = new Float32Array(PARTICLES_LENGTH),
             particles_i = 0,
-            t0 = new Date() * 1,
-            mouseX = null,
-            mouseY = null;
+            t0 = new Date() * 1;
 
         const fuzzy = (range, base) => {
             return (base || 0) + (rnd() - 0.5) * range * 2;
@@ -44,11 +42,6 @@ const Happy_Birthday = (props) => {
 
         const checkBounds = (x, y) => {
             return x < 0 || x >= width || y < 0 || y >= height;
-        };
-
-        const getMouseCoords = (e) => {
-            mouseX = e.pageX - canvas.current.offsetLeft;
-            mouseY = e.pageY - canvas.current.offsetTop;
         };
 
         const emit = (x, y) => {
@@ -95,21 +88,26 @@ const Happy_Birthday = (props) => {
         };
 
         window.addEventListener("resize", reload);
-        window.addEventListener('mousemove', getMouseCoords);
         draw();
 
         return () => {
             cancelAnimationFrame(frame.current);
             window.removeEventListener("resize", reload);
-            window.removeEventListener('mousemove', getMouseCoords);
             document.querySelector('html').style.overflow = "overflow";
         };
     }, []);
 
     return (
-        <canvas
-            ref={canvas}
-        />
+        <div>
+            <div style={{ position: "fixed", left: "0", top: "56px", width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
+                <div>
+                    <h1 data-aos="zoom-in-up" data-aos-duration="500">С днём рождения, мама!</h1>
+                </div>
+            </div>
+            <canvas
+                ref={canvas}
+            />
+        </div>
     );
 };
 
