@@ -55,6 +55,7 @@ const Timer = (props) => {
     const timeout = useRef(null);
     const interval = useRef(null);
     const soundInterval = useRef(null);
+    const vibrationInterval = useRef(null);
     const [play, { stop }] = useSound(alarm, { interrupt: true });
     const [sound, { pause }] = useSound(warning, { interrupt: true });
     const [played, setPlayed] = useState(false);
@@ -73,6 +74,7 @@ const Timer = (props) => {
         clearInterval(soundInterval.current);
         clearTimeout(timeout.current);
         clearInterval(interval.current);
+        clearInterval(vibrationInterval.current);
         setTo(new Date(new Date().getTime() + Time.inptimeToMs(timer)));
         setRunning(true);
         setPlayed(false);
@@ -92,6 +94,7 @@ const Timer = (props) => {
             clearInterval(soundInterval.current);
             clearTimeout(timeout.current);
             clearInterval(interval.current);
+            clearInterval(vibrationInterval.current);
             setPlayed(false);
             setNow(new Date());
             timeout.current = setTimeout(() => {
@@ -105,6 +108,7 @@ const Timer = (props) => {
             clearInterval(soundInterval.current);
             clearTimeout(timeout.current);
             clearInterval(interval.current);
+            clearInterval(vibrationInterval.current);
             setPlayed(false);
             stop();
             pause();
@@ -118,10 +122,13 @@ const Timer = (props) => {
         clearInterval(soundInterval.current);
         clearInterval(interval.current);
         clearTimeout(timeout.current);
+        clearInterval(vibrationInterval.current);
         setRunning(false);
         document.getElementById("title").textContent = "Таймер сработал!";
         if (window?.navigator?.vibrate) {
-            window.navigator.vibrate([200, 100, 300, 100], 1000);
+            vibrationInterval.current = setInterval(() => {
+                window.navigator.vibrate([200, 100, 300, 100]);
+            }, 1000);
         };
         play();
         soundInterval.current = setInterval(() => {
@@ -137,6 +144,7 @@ const Timer = (props) => {
         clearInterval(soundInterval.current);
         clearInterval(interval.current);
         clearTimeout(timeout.current);
+        clearInterval(vibrationInterval.current);
         stop();
         pause();
         setRunning(false);
@@ -207,6 +215,8 @@ const Timer = (props) => {
         return () => {
             clearInterval(interval.current);
             clearTimeout(timeout.current);
+            clearInterval(soundInterval.current);
+            clearInterval(vibrationInterval.current);
             setNow(null);
             setTo(null);
             document.getElementById("title").textContent = "Подарок";
@@ -345,6 +355,7 @@ const Timer = (props) => {
                     stop();
                     clearInterval(soundInterval.current);
                     if (window?.navigator?.vibrate) {
+                        clearInterval(vibrationInterval.current);
                         window.navigator.vibrate(0);
                     };
                     setModal(false);
