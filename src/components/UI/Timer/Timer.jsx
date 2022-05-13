@@ -126,6 +126,7 @@ const Timer = (props) => {
         setRunning(false);
         document.getElementById("title").textContent = "Таймер сработал!";
         if (window?.navigator?.vibrate) {
+            window.navigator.vibrate([200, 100, 300, 100]);
             vibrationInterval.current = setInterval(() => {
                 window.navigator.vibrate([200, 100, 300, 100]);
             }, 1000);

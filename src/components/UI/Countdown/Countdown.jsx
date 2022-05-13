@@ -17,8 +17,9 @@ const Countdown = (props) => {
     const timeout = useRef(null);
     const interval = useRef(null);
     const alarmInterval = useRef(null);
+    const vibrationInterval = useRef(null);
     const timeblock = useRef(null);
-    const [play, { pause }] = useSound(sound, { interrupt: true });
+    const [play] = useSound(sound, { interrupt: true });
     const [alarm, { stop }] = useSound(alarmSound, { interrupt: true });
 
     useEffect(() => {
@@ -26,6 +27,7 @@ const Countdown = (props) => {
             clearInterval(alarmInterval.current);
             clearTimeout(timeout.current);
             clearInterval(interval.current);
+            clearInterval(vibrationInterval.current);
             setNow(new Date());
             setPlayed(false);
             timeout.current = setTimeout(() => {
@@ -42,6 +44,12 @@ const Countdown = (props) => {
         if (date - now <= 0 && running) {
             if (document.fullscreenElement) {
                 document.exitFullscreen();
+            };
+            if (window?.navigator?.vibrate) {
+                window.navigator.vibrate([200, 100, 300, 100]);
+                vibrationInterval.current = setInterval(() => {
+                    window.navigator.vibrate([200, 100, 300, 100]);
+                }, 1000);
             };
             alarm();
             alarmInterval.current = setInterval(() => {
@@ -62,6 +70,7 @@ const Countdown = (props) => {
             clearInterval(alarmInterval.current);
             clearTimeout(timeout.current);
             clearInterval(interval.current);
+            clearInterval(vibrationInterval.current);
             setRunning(false);
             setModal(false);
             setDate(null);
@@ -137,6 +146,10 @@ const Countdown = (props) => {
                 onAccept={() => {
                     stop();
                     clearInterval(alarmInterval.current);
+                    clearInterval(vibrationInterval.current);
+                    if (window?.navigator?.vibrate) {
+                        window.navigator.vibrate(0);
+                    };
                     setModal(false);
                 }}
                 fixed
