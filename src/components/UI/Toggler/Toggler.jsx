@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import useSound from 'use-sound';
-import { SoundContext, VibrationContext } from '../../../context';
-import sound from '../../../media/sounds/toggle.mp3';
+import { SoundContext, Togglersound, VibrationContext } from '../../../context';
 import classes from './Toggler.module.sass';
 
 const Toggler = (props) => {
+    const sound = useContext(Togglersound);
     const [play] = useSound(sound, { interrupt: true });
     const isSound = useContext(SoundContext);
     const isVibration = useContext(VibrationContext);

@@ -295,6 +295,7 @@ const Todo = (props) => {
                                     style={{ color: "#37911F", filter: "invert(0%)" }}
                                     onClick={() => {
                                         setTitle(el.name);
+                                        setIsAdding(true);
                                         if (current === 1) {
                                             setCurrent('');
                                             setTimeout(() => {

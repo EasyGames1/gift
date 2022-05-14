@@ -101,7 +101,7 @@ const Happy_Birthday = (props) => {
         <div>
             <div style={{ position: "fixed", left: "0", top: "56px", width: "100%", height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
                 <div>
-                    <h1 data-aos="zoom-in-up" data-aos-duration="500">С днём рождения, мама!</h1>
+                    <h1 data-aos="zoom-in-up" data-aos-duration="500" style={{color: "#fff"}}>С днём рождения, мама!</h1>
                 </div>
             </div>
             <canvas

@@ -149,7 +149,9 @@ const MyDishes = (props) => {
                     dishes?.map((dish, index) =>
                         <li
                             style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-                            onClick={() => {
+                            onClick={(e) => {
+                                //Не работает удаление
+                                e.stopPropagation();
                                 setCurrent(index);
                                 setModal(true);
                             }}

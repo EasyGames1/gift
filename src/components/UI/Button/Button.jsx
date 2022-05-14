@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
 import classes from './Button.module.css';
-import sound from '../../../media/sounds/button.mp3';
 import useSound from 'use-sound';
-import { SoundContext, VibrationContext } from '../../../context';
+import { Buttonsound, SoundContext, VibrationContext } from '../../../context';
 
 const Button = ({ children, ...props }) => {
+    const sound = useContext(Buttonsound);
     const [play] = useSound(sound, { interrupt: true });
     const isSound = useContext(SoundContext);
     const isVibration = useContext(VibrationContext);

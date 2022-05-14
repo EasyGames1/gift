@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { SoundContext, VibrationContext } from '../../../context';
+import { Buttonsound, SoundContext, VibrationContext } from '../../../context';
 import classes from './Select.module.css';
-import sound from '../../../media/sounds/button.mp3';
 import useSound from 'use-sound';
 
 const Select = (props) => {
     const [show, setShow] = useState(false);
     const isSound = useContext(SoundContext);
     const isVibration = useContext(VibrationContext);
+    const sound = useContext(Buttonsound);
     const [play] = useSound(sound, { interrupt: true });
 
     const showFunc = (e) => {
