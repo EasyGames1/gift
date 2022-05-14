@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Buttonsound, SoundContext, VibrationContext } from '../../../context';
+import { SoundContext, VibrationContext } from '../../../context';
 import classes from './Select.module.css';
 import useSound from 'use-sound';
 
@@ -7,7 +7,7 @@ const Select = (props) => {
     const [show, setShow] = useState(false);
     const isSound = useContext(SoundContext);
     const isVibration = useContext(VibrationContext);
-    const sound = useContext(Buttonsound);
+    const sound = isSound && require('../../../media/sounds/button.mp3');
     const [play] = useSound(sound, { interrupt: true });
 
     const showFunc = (e) => {
@@ -23,9 +23,9 @@ const Select = (props) => {
         props.onChange(e.props.children);
         if (isSound) {
             play();
-            if (isVibration && window?.navigator?.vibrate) {
-                window.navigator.vibrate(10);
-            };
+        };
+        if (isVibration && window?.navigator?.vibrate) {
+            window.navigator.vibrate(10);
         };
         setShow(false);
     };
@@ -50,9 +50,9 @@ const Select = (props) => {
             props.onChange(props.title);
             if (isSound) {
                 play();
-                if (isVibration && window?.navigator?.vibrate) {
-                    window.navigator.vibrate(10);
-                };
+            };
+            if (isVibration && window?.navigator?.vibrate) {
+                window.navigator.vibrate(10);
             };
             setShow(false);
         } else {

@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
 import useSound from 'use-sound';
-import { SoundContext, Togglersound, VibrationContext } from '../../../context';
+import { SoundContext, VibrationContext } from '../../../context';
 import classes from './Toggler.module.sass';
 
 const Toggler = (props) => {
-    const sound = useContext(Togglersound);
-    const [play] = useSound(sound, { interrupt: true });
     const isSound = useContext(SoundContext);
     const isVibration = useContext(VibrationContext);
+    const sound = isSound && require('../../../media/sounds/toggle.mp3');
+    const [play] = useSound(sound, { interrupt: true });
 
     return (
         <>
@@ -24,9 +24,9 @@ const Toggler = (props) => {
                         props.setChecked(!props.checked);
                         if (isSound) {
                             play();
-                            if (isVibration && window?.navigator?.vibrate) {
-                                window.navigator.vibrate(10);
-                            };
+                        };
+                        if (isVibration && window?.navigator?.vibrate) {
+                            window.navigator.vibrate(10);
                         };
                     };
                 }}
