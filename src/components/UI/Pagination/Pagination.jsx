@@ -29,6 +29,7 @@ const Pagination = (props) => {
                                 navigate(`${props.path}${Number(props.current) - 1}`);
                             };
                         }}
+                        title="К предыдущей странице"
                     >
                         keyboard_double_arrow_left
                     </IconButton>
@@ -39,6 +40,7 @@ const Pagination = (props) => {
                                 navigate(`${props.path}${Number(props.current) + 1}`);
                             };
                         }}
+                        title="К следующей странице"
                     >
                         keyboard_double_arrow_right
                     </IconButton>

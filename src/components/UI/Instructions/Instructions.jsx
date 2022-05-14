@@ -11,7 +11,7 @@ const Instructions = (props) => {
         <div>
             <h2 className="text-center text-uppercase green mt-5 mb-3">Попробуйте!</h2>
             <h3 className="text-center text-uppercase blue mt-2 mb-4">Модальные окна</h3>
-            <List theme={props.theme} style={{maxWidth: '500px', margin: 'auto'}} clickable animate>
+            <List theme={props.theme} clickable animate>
                 <li
                     onClick={() => setModal(true)}
                 >
@@ -28,8 +28,17 @@ const Instructions = (props) => {
                     Есть и фиксированные модальные окна.
                 </li>
             </List>
+            <h3 className="text-center text-uppercase blue mt-2 mb-4">Готовые рецепты</h3>
+            <List theme={props.theme} className="mw500">
+                <li>
+                    Готовые рецепты написаны не на русском языке в целях Вашего развития. Если Вам это не нравится, Вы можете нажимать кнопки напротив текста для его перевода или установить расширение, подобное Google Translate. На телефонах (Например, в браузере Chrome) можно сделать так: нажать три точки, затем нажать "Перевести". Рецепты будут переведены.
+                </li>
+                <li>
+                    Лимит в месяц - 500. Это означает, что только 500 раз в месяц Вы сможете взаимодействовать с рецептами - смотрите ли Вы список рецептов, или читаете описание конкретного рецепта - не имеет значения. Каждое Ваше действие входит в эти 500 раз. Ограничение установил не разработчик - таковы условия получения рецептов.
+                </li>
+            </List>
             <h3 className="text-center text-uppercase blue mt-2 mb-4">Мои рецепты</h3>
-            <List theme={props.theme} style={{maxWidth: '500px', margin: 'auto'}}>
+            <List theme={props.theme}>
                 <li>
                     Нажмите Enter, когда Вы сфокусированы на поле ввода для добавления следующего элемента списка. Например, следующего ингридиента.
                 </li>
@@ -38,7 +47,7 @@ const Instructions = (props) => {
                 </li>
             </List>
             <h3 className="text-center text-uppercase blue mt-2 mb-4">Список покупок</h3>
-            <List theme={props.theme} style={{maxWidth: '500px', margin: 'auto'}}>
+            <List theme={props.theme}>
                 <li>
                     Нажмите Enter в поле ввода для перехода к следующему полю ввода.
                 </li>
@@ -54,7 +63,7 @@ const Instructions = (props) => {
                 </li>
             </List>
             <h3 className='text-center text-uppercase blue mt-2 mb-4'>Индекс Массы Тела</h3>
-            <List theme={props.theme} style={{maxWidth: '500px', margin: 'auto'}}>
+            <List theme={props.theme}>
                 <li>
                     Если Ваш рост не изменился и Вы уже вводили его в предыдущий раз, можете оставить поле пустым.
                     Система возьмёт то же значение, что и в прошлый раз.

@@ -400,7 +400,7 @@ const Todo = (props) => {
                 onAccept={() => {
                     setList({
                         ...list,
-                        data: list.data.filter((it, x) => list.data.map((item) => item.name).indexOf(deleteCategorie?.el) !== x),
+                        data: list?.data?.filter((it, x) => list.data.map((item) => item.name).indexOf(deleteCategorie?.el) !== x) || [],
                         categories: list.categories.filter((item, i) => i !== deleteCategorie.index)
                     });
                     setTitle("На ближайшее время");

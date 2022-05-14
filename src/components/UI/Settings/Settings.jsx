@@ -290,11 +290,11 @@ const Settings = (props) => {
                     theme={props.theme}
                     visible={modal}
                     setVisible={setModal}
-                    title={Object.keys(Storage.getUserData('settings')).length === 0 ? "Уведомление" : "Подтверждение"}
-                    footer={Object.keys(Storage.getUserData('settings')).length === 0 ? "" : "Сбросить настройки"}
+                    title={!Storage.getUserData('settings') || Object.keys(Storage.getUserData('settings')).length === 0 ? "Уведомление" : "Подтверждение"}
+                    footer={!Storage.getUserData('settings') || Object.keys(Storage.getUserData('settings')).length === 0 ? "" : "Сбросить настройки"}
                     footerRed
                     onAccept={() => {
-                        if (Object.keys(Storage.getUserData('settings')).length !== 0) {
+                        if (Storage.getUserData('settings') && Object.keys(Storage.getUserData('settings')).length !== 0) {
                             Storage.setUserData("settings", {});
                             window.location.reload();
                         };
@@ -302,7 +302,7 @@ const Settings = (props) => {
                 >
                     <div className="mw500">
                         {
-                            Object.keys(Storage.getUserData('settings')).length !== 0 ?
+                            Storage.getUserData('settings') && Object.keys(Storage.getUserData('settings')).length !== 0 ?
                             <h3>Вы уверены, что хотите сбросить настройки?</h3> :
                             <h3>Вы уже сбросили настройки.</h3>
                         }

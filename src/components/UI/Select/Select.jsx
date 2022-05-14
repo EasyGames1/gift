@@ -48,12 +48,6 @@ const Select = (props) => {
     useEffect(() => {
         if (props.title !== '') {
             props.onChange(props.title);
-            if (isSound) {
-                play();
-            };
-            if (isVibration && window?.navigator?.vibrate) {
-                window.navigator.vibrate(10);
-            };
             setShow(false);
         } else {
             props.setTitle(props?.children[0]?.props?.children);
