@@ -81,7 +81,8 @@ const App = () => {
   const [settingsVisible, setSettingsVisible] = useState(false);
   const [isGeo, setIsGeo] = useState(Storage.getUserData("settings")?.isGeo == undefined ? true : Storage.getUserData("settings")?.isGeo);
   const [isSound, setIsSound] = useState(Storage.getUserData("settings")?.isSound == undefined ? false : Storage.getUserData("settings")?.isSound);
-  const [isVibration, setIsVibration] = useState(Storage.getUserData("settings")?.isSound == undefined ? true : Storage.getUserData("settings")?.isSound);
+  const [isVibration, setIsVibration] = useState(Storage.getUserData("settings")?.isVibration == undefined ? true : Storage.getUserData("settings")?.isVibration);
+  console.log(isVibration)
   const [coords, setCoords] = useState('');
   const [isWeatherGraph, setIsWeatherGraph] = useState(
     Storage.getUserData("settings")?.extended?.weather?.isWeatherGraph
