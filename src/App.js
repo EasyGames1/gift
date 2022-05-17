@@ -13,21 +13,19 @@ import { SoundContext, VibrationContext } from './context';
 
 const App = () => {
   const getGeo = (state) => {
-    if (state === "granted") {
-      if (isGeo) {
-        if ("geolocation" in navigator) {
-          navigator.geolocation.getCurrentPosition(async (pos) => {
-            setCoords({
-              lat: pos.coords.latitude,
-              lon: pos.coords.longitude
-            });
-            setAgentModalGeo(false);
+    if ((state === "granted" || state === "prompt") && isGeo) {
+      if ("geolocation" in navigator) {
+        navigator.geolocation.getCurrentPosition(async (pos) => {
+          setCoords({
+            lat: pos.coords.latitude,
+            lon: pos.coords.longitude
           });
-        } else {
-          alert("Ваш браузер не поддерживает геолокацию. Обновитесь! Иначе за стабильность работы приложения нести ответственность будете Вы.");
-        };
-        setAgentModalGeo(false);
+          setAgentModalGeo(false);
+        });
+      } else {
+        alert("Ваш браузер не поддерживает геолокацию. Обновитесь! Иначе за стабильность работы приложения нести ответственность будете Вы.");
       };
+      setAgentModalGeo(false);
     };
     if (state === "denied" || state === "prompt") {
       if (isGeo) {
@@ -82,7 +80,6 @@ const App = () => {
   const [isGeo, setIsGeo] = useState(Storage.getUserData("settings")?.isGeo == undefined ? true : Storage.getUserData("settings")?.isGeo);
   const [isSound, setIsSound] = useState(Storage.getUserData("settings")?.isSound == undefined ? false : Storage.getUserData("settings")?.isSound);
   const [isVibration, setIsVibration] = useState(Storage.getUserData("settings")?.isVibration == undefined ? true : Storage.getUserData("settings")?.isVibration);
-  console.log(isVibration)
   const [coords, setCoords] = useState('');
   const [isWeatherGraph, setIsWeatherGraph] = useState(
     Storage.getUserData("settings")?.extended?.weather?.isWeatherGraph
