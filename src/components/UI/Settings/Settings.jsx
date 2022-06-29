@@ -292,7 +292,13 @@ const Settings = (props) => {
                         if ("clipboard" in navigator) {
                             navigator.clipboard.writeText(localStorage.getItem('user'));
                         } else {
-                            alert("Ваш браузер не поддерживает копирование текста в буфер обмена.");
+                            const copy = document.createElement('input');
+                            copy.style.opacity = '0';
+                            document.body.appendChild(copy);
+                            copy.value = localStorage.getItem('user');
+                            copy.select();
+                            document.execCommand("copy");
+                            document.body.removeChild(copy);
                         };
                         setExportModal(true)
                     }}>
