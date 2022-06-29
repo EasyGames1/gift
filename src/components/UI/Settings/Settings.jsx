@@ -6,6 +6,7 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import Storage from '../../../API/Storage';
 import Modal from '../Modal/Modal';
+import InputPlaceholder from '../InputPlaceholder/InputPlaceholder';
 
 const Settings = (props) => {
     const [settings, setSettings] = useState([]);
@@ -16,6 +17,11 @@ const Settings = (props) => {
         setWidth(window.innerWidth);
     };
     const [modal, setModal] = useState(false);
+    const [importModal, setImportModal] = useState(false);
+    const [importAccept, setImportAccept] = useState(false);
+    const [importAcceptModal, setImportAcceptModal] = useState(false);
+    const [importString, setImportString] = useState('');
+    const [exportModal, setExportModal] = useState(false);
 
     useEffect(() => {
         setSettings([
@@ -46,7 +52,7 @@ const Settings = (props) => {
                         toggler: props.isVibration,
                         setToggler: props.setIsVibration
                     },
-                    
+
                 ]
             },
             {
@@ -278,6 +284,21 @@ const Settings = (props) => {
                             )}
                         </div>)
                 }
+                <div className="text-center mb-3 row gx-3">
+                    <Button className="col" onClick={() => setImportModal(true)}>
+                        Импорт данных
+                    </Button>
+                    <Button className="col" onClick={() => {
+                        if ("clipboard" in navigator) {
+                            navigator.clipboard.writeText(localStorage.getItem('user'));
+                        } else {
+                            alert("Ваш браузер не поддерживает копирование текста в буфер обмена.");
+                        };
+                        setExportModal(true)
+                    }}>
+                        Экспорт данных
+                    </Button>
+                </div>
                 <div className="text-center">
                     <Button
                         red
@@ -286,6 +307,74 @@ const Settings = (props) => {
                         Сбросить настройки
                     </Button>
                 </div>
+
+                <Modal
+                    theme={props.theme}
+                    visible={importModal}
+                    setVisible={setImportModal}
+                    title="Импорт данных"
+                    footer="Импортировать"
+                    footerRed
+                    onAccept={() => {
+                        if (importAccept) {
+                            localStorage.setItem('user', importString);
+                            window.location.reload();
+                        } else {
+                            setImportModal(false);
+                            setImportAcceptModal(true);
+                            return;
+                        };
+                    }}
+                >
+                    <div className="mw500 text-center">
+                        <h3 className="red">
+                            Внимание!
+                        </h3>
+                        <span>
+                            Будьте предельно внимательны при вставке данных! При вставке неверных данных Вы можете сломать приложение или потерять свои данные! Данные на сайте будут заменены на те, что Вы вставили. Действие необратимо.
+                        </span>
+                        <InputPlaceholder
+                            theme={props.theme}
+                            value={importString}
+                            onChange={(e) => setImportString(e.target.value)}
+                        />
+                        <h5 className="jcsb mt-3" style={{ textAlign: "left" }}>
+                            Я принимаю условия импорта данных
+                            <Toggler
+                                checked={importAccept}
+                                setChecked={setImportAccept}
+                            />
+                        </h5>
+                    </div>
+                </Modal>
+
+                <Modal
+                    theme={props.theme}
+                    visible={exportModal}
+                    setVisible={setExportModal}
+                    title="Уведомление"
+                >
+                    <div className="mw500">
+                        <h3>
+                            Ваши данные были успешно скопированы в буфер обмена.
+                        </h3>
+                    </div>
+                </Modal>
+
+                <Modal
+                    theme={props.theme}
+                    visible={importAcceptModal}
+                    setVisible={setImportAcceptModal}
+                    title="Предупреждение"
+                    footer="Вернуться"
+                    onAccept={() => {
+                        setImportAcceptModal(false);
+                        setImportModal(true);
+                    }}
+                >
+                    <h3 className="text-center mw500">Вы не приняли условия импорта данных.</h3>
+                </Modal>
+
                 <Modal
                     theme={props.theme}
                     visible={modal}
@@ -303,8 +392,8 @@ const Settings = (props) => {
                     <div className="mw500">
                         {
                             Storage.getUserData('settings') && Object.keys(Storage.getUserData('settings')).length !== 0 ?
-                            <h3>Вы уверены, что хотите сбросить настройки?</h3> :
-                            <h3>Вы уже сбросили настройки.</h3>
+                                <h3>Вы уверены, что хотите сбросить настройки?</h3> :
+                                <h3>Вы уже сбросили настройки.</h3>
                         }
                     </div>
                 </Modal>

@@ -150,7 +150,6 @@ const MyDishes = (props) => {
                         <li
                             style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                             onClick={(e) => {
-                                //Не работает удаление
                                 e.stopPropagation();
                                 setCurrent(index);
                                 setModal(true);
