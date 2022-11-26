@@ -252,6 +252,7 @@ const App = () => {
     });
     setIsRecipes(isRecipesForbidden ? !isRecipesForbidden : isRecipes);
     setIsReadyRecipesImages(isRecipesForbidden ? !isRecipesForbidden : isReadyRecipesImages);
+    setIsRecipesTranslate(isRecipesForbidden ? !isRecipesForbidden : isRecipesTranslate);
   }, [isRecipesForbidden]);
 
   useEffect(() => {
