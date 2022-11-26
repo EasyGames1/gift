@@ -1,0 +1,6 @@
+{
+	"appId": "com.gift.app",
+	"appName": "Подарок",
+	"webDir": "build",
+	"bundledWebRuntime": false
+}

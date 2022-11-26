@@ -8,9 +8,7 @@
     transform: scale(1.05);
 }
 .title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    text-align: center;
 }
 .title a {
     color: #444;

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Подарок</string>
+    <string name="title_activity_main">Подарок</string>
+    <string name="package_name">com.gift.app</string>
+    <string name="custom_url_scheme">com.gift.app</string>
+</resources>

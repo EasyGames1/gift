@@ -46,4 +46,18 @@ export default class PostService {
             }
         });
     };
+    static async GetTranslate(string) {
+        return await axios.request({
+            method: 'GET',
+            url: 'https://translate.googleapis.com/translate_a/single',
+            params: {
+                client: 'gtx',
+                sl: 'auto',
+                tl: 'ru',
+                dt: 't',
+                dj: '1',
+                q: string
+            }
+        });
+    }
 };

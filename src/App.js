@@ -58,6 +58,11 @@ const App = () => {
 
 
   const [needToResetMyDishes, setNeedToResetMyDishes] = useState(false);
+  const [isRecipesTranslate, setIsRecipesTranslate] = useState(
+    Storage.getUserData("settings")?.extended?.cooking?.isRecipesTranslate != undefined
+      ? Storage.getUserData("settings")?.extended?.cooking?.isRecipesTranslate
+      : true
+  );
   const [isReadyRecipesImages, setIsReadyRecipesImages] = useState(
     Storage.getUserData("settings")?.extended?.cooking?.isReadyRecipesImages != undefined
       ? Storage.getUserData("settings")?.extended?.cooking?.isReadyRecipesImages
@@ -122,7 +127,6 @@ const App = () => {
       : false
   );
 
-
   useEffect(() => {
     Storage.setUserData("settings", {
       ...Storage.getUserData("settings"),
@@ -174,6 +178,19 @@ const App = () => {
       }
     });
   }, [isReadyRecipesImages]);
+
+  useEffect(() => {
+    Storage.setUserData("settings", {
+      ...Storage.getUserData("settings"),
+      extended: {
+        ...Storage.getUserData("settings")?.extended,
+        cooking: {
+          ...Storage.getUserData("settings")?.extended?.cooking,
+          isRecipesTranslate: isRecipesTranslate
+        }
+      }
+    });
+  }, [isRecipesTranslate]);
 
   useEffect(() => {
     Storage.setUserData("settings", {
@@ -341,8 +358,6 @@ const App = () => {
         ...Storage.getUserData('data'),
         used: true
       });
-    } else {
-
     };
   }, []);
   return (
@@ -397,6 +412,8 @@ const App = () => {
                 setRecipesEditorDefault={setRecipesEditorDefault}
                 isReadyRecipesImages={isReadyRecipesImages}
                 setIsReadyRecipesImages={setIsReadyRecipesImages}
+                isRecipesTranslate={isRecipesTranslate}
+                setIsRecipesTranslate={setIsRecipesTranslate}
                 needToResetMyDishes={needToResetMyDishes}
                 setNeedToResetMyDishes={setNeedToResetMyDishes}
                 deleteRecipesConfirm={deleteRecipesConfirm}

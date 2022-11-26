@@ -1,13 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import classes from './Recipes.module.css';
 import { Link, useParams } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 import Pagination from '../Pagination/Pagination';
 import Image from '../Image';
-import IconButton from '../IconButton/IconButton';
+import PostService from '../../../API/PostService';
 
 const Recipes = (props) => {
     const params = useParams();
+    const [recipes, setRecipes] = useState([]);
+
+    useEffect(() => {
+        if (props.recipes.results) {
+            if (props.isRecipesTranslate) {
+                Promise.all(props.recipes?.results?.map(async recipe => {
+                    const response = await PostService.GetTranslate(recipe.name);
+                    recipe.name = response.data.sentences[0].trans;
+                    return recipe;
+                })).then(result => setRecipes(result));
+            } else {
+                setRecipes(props.recipes.results);
+            };
+        };
+    }, [props.recipes?.results]);
+
     return (
         <div className="container">
             {
@@ -36,7 +52,7 @@ const Recipes = (props) => {
                         {!props.errorRecipes
                             ? props.isLoadingRecipes ? <Loader /> :
                                 <>
-                                    {props.recipes?.results?.map((recipe, index) => recipe.aspect_ratio === "16:9" &&
+                                    {recipes?.map((recipe, index) => recipe.aspect_ratio === "16:9" &&
                                         <div data-aos="fade-in" data-aos-dureation="400" key={index} className={"col-xl-4 col-md-4 col-sm-12"} style={{ marginBottom: "50px" }}>
                                             <Link onClick={() => window.scrollTo(0, 0)} to={`/projects/cooking/dish/${recipe.id}`}>
                                                 {
@@ -48,18 +64,10 @@ const Recipes = (props) => {
                                                 <Link onClick={() => window.scrollTo(0, 0)} to={`/projects/cooking/dish/${recipe.id}`}>
                                                     {recipe.name}
                                                 </Link>
-                                                <a
-                                                    href={`https://translate.google.com/?sl=auto&tl=ru&text=${recipe.name.replace(/&/g, "%26")}&op=translate`}
-                                                    target="_blank"
-                                                >
-                                                    <IconButton theme={props.theme}>
-                                                        g_translate
-                                                    </IconButton>
-                                                </a>
                                             </h4>
                                         </div>
                                     )}
-                                    {props.recipes?.results?.map((recipe, index) => recipe.aspect_ratio !== "16:9" &&
+                                    {recipes?.map((recipe, index) => recipe.aspect_ratio !== "16:9" &&
                                         <div data-aos="fade-in" data-aos-dureation="400" key={index} className={"col-xl-4 col-md-4 col-sm-12"} style={{ marginBottom: "50px" }}>
                                             <Link onClick={() => window.scrollTo(0, 0)} to={`/projects/cooking/dish/${recipe.id}`}>
                                                 {
@@ -71,14 +79,6 @@ const Recipes = (props) => {
                                                 <Link onClick={() => window.scrollTo(0, 0)} to={`/projects/cooking/dish/${recipe.id}`}>
                                                     {recipe.name}
                                                 </Link>
-                                                <a
-                                                    href={`https://translate.google.com/?sl=auto&tl=ru&text=${recipe.name.replace(/&/g, "%26")}&op=translate`}
-                                                    target="_blank"
-                                                >
-                                                    <IconButton theme={props.theme}>
-                                                        g_translate
-                                                    </IconButton>
-                                                </a>
                                             </h4>
                                         </div>
                                     )}

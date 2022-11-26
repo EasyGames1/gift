@@ -73,6 +73,8 @@ const Router = (props) => {
                     setIsSound={props.setIsSound}
                     isVibration={props.isVibration}
                     setIsVibration={props.setIsVibration}
+                    isRecipesTranslate={props.isRecipesTranslate}
+                    setIsRecipesTranslate={props.setIsRecipesTranslate}
                 />
         },
         {
@@ -130,6 +132,8 @@ const Router = (props) => {
                     setNeedToResetMyDishes={props.setNeedToResetMyDishes}
                     deleteRecipesConfirm={props.deleteRecipesConfirm}
                     setDeleteRecipesConfirm={props.setDeleteRecipesConfirm}
+                    isRecipesTranslate={props.isRecipesTranslate}
+                    setIsRecipesTranslate={props.SetIsRecipesTranslate}
                 />
         },
         {

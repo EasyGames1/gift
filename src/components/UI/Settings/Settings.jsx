@@ -120,6 +120,17 @@ const Settings = (props) => {
                     {
                         parent: 'Кулинария',
                         subparent: 'Готовые рецепты',
+                        title: 'Перевод',
+                        desc: 'Переводить ли названия блюд?',
+                        class: `${classes.permission} mb-3`,
+                        isToggler: true,
+                        toggler: props.isRecipesTranslate,
+                        setToggler: props.setIsRecipesTranslate,
+                        disabled: props.isRecipesForbidden
+                    },
+                    {
+                        parent: 'Кулинария',
+                        subparent: 'Готовые рецепты',
                         title: 'Количество на странице',
                         desc: 'Количество рецептов на одной странице.',
                         class: `${classes.permission} mb-3`,

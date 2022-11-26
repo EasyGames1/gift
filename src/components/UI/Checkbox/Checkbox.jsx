@@ -16,7 +16,6 @@ const Checkbox = (props) => {
                 value={props.value}
                 checked={props.checked}
                 className={`${props.className} ${classes.checkbox}`}
-                onChange={() => { }}
             />
             <label
                 className={`${props.className} ${classes.label} ${classes[props.theme]}`}

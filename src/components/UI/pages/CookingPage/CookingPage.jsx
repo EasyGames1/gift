@@ -68,6 +68,8 @@ const CookingPage = (props) => {
                             setIsLoading={setIsLoading}
                             isReadyRecipesImages={props?.isReadyRecipesImages}
                             setIsReadyRecipesImages={props?.isReadyRecipesImages}
+                            isRecipesTranslate={props.isRecipesTranslate}
+                            setIsRecipesTranslate={props.setIsRecipesTranslate}
                         />
                     }
                 </>
