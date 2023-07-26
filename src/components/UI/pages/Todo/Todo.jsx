@@ -18,7 +18,7 @@ const Todo = (props) => {
     const [current, setCurrent] = useState('');
     const [highlight, setHighlight] = useState('');
     const [title, setTitle] = useState('');
-    const [deleteCategorie, setDeleteCategorie] = useState({});
+    const [deleteCategory, setDeleteCategory] = useState({});
     const [newTask, setNewTask] = useState('');
     const [list, setList] = useState(
         Storage.getUserData('data')?.extended?.todo ?
@@ -89,14 +89,14 @@ const Todo = (props) => {
     };
 
     useEffect(() => {
-        if (Object.keys(deleteCategorie).length > 0) {
-            if (deleteCategorie?.type === "Категория") {
+        if (Object.keys(deleteCategory).length > 0) {
+            if (deleteCategory?.type === "Категория") {
                 setDeleteCategorieModal(true);
             } else {
                 setDeleteListModal(true);
             };
         };
-    }, [deleteCategorie]);
+    }, [deleteCategory]);
 
     useEffect(() => {
         if (isAdding) {
@@ -272,7 +272,7 @@ const Todo = (props) => {
                                                 <IconButton
                                                     theme={props.theme}
                                                     style={{ color: "#BA0000", filter: "invert(0%)" }}
-                                                    onClick={() => setDeleteCategorie({ el: el, index: index, type: "Категория" })}
+                                                    onClick={() => setDeleteCategory({ el: el, index: index, type: "Категория" })}
                                                 >
                                                     delete
                                                 </IconButton>
@@ -360,7 +360,7 @@ const Todo = (props) => {
                             <div className="text-center">
                                 <Button
                                     red
-                                    onClick={() => setDeleteCategorie({ el: el.name, index: i, type: "Список" })}
+                                    onClick={() => setDeleteCategory({ el: el.name, index: i, type: "Список" })}
                                 >
                                     Очистить список
                                 </Button>
@@ -400,8 +400,8 @@ const Todo = (props) => {
                 onAccept={() => {
                     setList({
                         ...list,
-                        data: list?.data?.filter((it, x) => list.data.map((item) => item.name).indexOf(deleteCategorie?.el) !== x) || [],
-                        categories: list.categories.filter((item, i) => i !== deleteCategorie.index)
+                        data: list?.data?.filter((it, x) => list.data.map((item) => item.name).indexOf(deleteCategory?.el) !== x) || [],
+                        categories: list.categories.filter((item, i) => i !== deleteCategory.index)
                     });
                     setTitle("На ближайшее время");
                     setDeleteCategorieModal(false);
@@ -411,7 +411,7 @@ const Todo = (props) => {
                     <h5 style={{ fontWeight: '400' }}>
                         Вы действительно хотите удалить категорию&nbsp;
                         <span style={{ fontWeight: '500' }}>
-                            {deleteCategorie?.el}?
+                            {deleteCategory?.el}?
                         </span>
                     </h5>
                 </div>
@@ -427,8 +427,8 @@ const Todo = (props) => {
                     setList({
                         ...list,
                         data: list.data.map((element, z) =>
-                            z === deleteCategorie?.index ? {
-                                name: deleteCategorie?.el,
+                            z === deleteCategory?.index ? {
+                                name: deleteCategory?.el,
                                 tasks: []
                             } : element)
                     });
@@ -439,7 +439,7 @@ const Todo = (props) => {
                     <h5 style={{ fontWeight: '400' }}>
                         Вы действительно хотите очистить список категории&nbsp;
                         <span style={{ fontWeight: '500' }}>
-                            {deleteCategorie?.el}?
+                            {deleteCategory?.el}?
                         </span>
                     </h5>
                 </div>

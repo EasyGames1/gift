@@ -50,6 +50,9 @@ export default class PostService {
         return await axios.request({
             method: 'GET',
             url: 'https://translate.googleapis.com/translate_a/single',
+            headers: {
+                "Access-Control-Allow-Origin": "translate.googleapis.com"
+            },
             params: {
                 client: 'gtx',
                 sl: 'auto',
@@ -57,7 +60,7 @@ export default class PostService {
                 dt: 't',
                 dj: '1',
                 q: string
-            }
+            },
         });
-    }
+    };
 };

@@ -9,7 +9,6 @@ const IconButton = ({ children, theme, onClick, ...props }) => {
     const isVibration = useContext(VibrationContext);
     const sound = isSound && require('../../../media/sounds/iconbutton.mp3');
     const [play] = useSound(sound, { interrupt: true });
-
     return (
         <span
             {...props}
