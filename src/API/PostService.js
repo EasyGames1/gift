@@ -51,7 +51,7 @@ export default class PostService {
             method: 'GET',
             url: 'https://translate.googleapis.com/translate_a/single',
             headers: {
-                "Access-Control-Allow-Origin": "translate.googleapis.com"
+                "Access-Control-Allow-Origin": "https://translate.googleapis.com"
             },
             params: {
                 client: 'gtx',
