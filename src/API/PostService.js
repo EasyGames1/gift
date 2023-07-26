@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { weather, tasty } from '../utils/keys';
+import {weather, tasty} from '../utils/keys';
 
 export default class PostService {
     static async getWeather(lat, lon) {
@@ -13,6 +13,7 @@ export default class PostService {
             }
         });
     };
+
     static async getWeatherForecast(lat, lon) {
         return await axios.get('https://api.openweathermap.org/data/2.5/forecast', {
             params: {
@@ -24,35 +25,35 @@ export default class PostService {
             }
         });
     };
+
     static async getRecipes(from, size) {
         return await axios.request({
             method: 'GET',
             url: 'https://tasty.p.rapidapi.com/recipes/list',
-            params: { from: from, size: size },
+            params: {from: from, size: size},
             headers: {
                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
                 'X-RapidAPI-Key': tasty
             }
         });
     };
+
     static async getRecipe(id) {
         return await axios.request({
             method: 'GET',
             url: 'https://tasty.p.rapidapi.com/recipes/get-more-info',
-            params: { id: id },
+            params: {id: id},
             headers: {
                 'X-RapidAPI-Host': 'tasty.p.rapidapi.com',
                 'X-RapidAPI-Key': tasty
             }
         });
     };
+
     static async GetTranslate(string) {
         return await axios.request({
             method: 'GET',
             url: 'https://translate.googleapis.com/translate_a/single',
-            headers: {
-                "Access-Control-Allow-Origin": "https://translate.googleapis.com"
-            },
             params: {
                 client: 'gtx',
                 sl: 'auto',
